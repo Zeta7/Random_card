@@ -44,6 +44,8 @@ body{width: 100vw;
 @media screen and (max-width: 550px){
   .card_container{
     width: 90vw;
-    
+    .card_container .text_container{
+    height: 125px;
+}
   }
 }
