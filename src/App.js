@@ -1,23 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
+import {useState} from 'react';
+import QuoteBox from './component/QuoteBox';
+import quotes from './quotes.json';
 
-function App() {
+const getRandom = () => Math.floor(Math.random()* quotes.length);
+
+const App = () => {
+  const colors = ['#845EC2', '#FFC75F', '#4D8076', '#00C9A7', '#936C00', '#009EFA'];
+  const [user, setSelectedUser]= useState(quotes[getRandom()]);
+  const changeUser = () => setSelectedUser(quotes[getRandom()]);
+
+let color = colors[Math.floor(Math.random()* 6)];
+    document.body.style = `background: ${color}`;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <QuoteBox  
+      color={color}
+      sentence={user.quote}
+      name={user.author}
+      condition={changeUser}
+      />
     </div>
   );
 }
